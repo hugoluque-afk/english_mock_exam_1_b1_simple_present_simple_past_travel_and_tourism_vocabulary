@@ -26,6 +26,10 @@
         #floatingTimer {
             transition: opacity 0.4s ease, transform 0.4s ease;
         }
+
+        /* Ocultar scrollbar si se desea más inmersión, opcional */
+        /* ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; } */
     </style>
 </head>
 <body class="text-gray-800 p-3 md:p-8 relative">
@@ -409,7 +413,7 @@
                 
                 <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 text-gray-800 tracking-tight animate-pop">Exam Results</h2>
                 
-                <!-- Tarjetas de Calificación Gigantes (Ahora son 4) -->
+                <!-- Tarjetas de Calificación Gigantes -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
                     
                     <!-- Puntaje Total -->
@@ -551,6 +555,30 @@
             q55: "Primero necesitas el verbo en pasado afirmativo, y en la segunda parte el auxiliar negativo en pasado."
         };
 
+        // --- FULLSCREEN FUNCTIONS ---
+        function enterFullScreen() {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => console.log(err));
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen().catch(err => console.log(err));
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen().catch(err => console.log(err));
+            }
+        }
+
+        function exitFullScreen() {
+            if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().catch(err => console.log(err));
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen().catch(err => console.log(err));
+                } else if (document.msExitFullscreen) { /* IE11 */
+                    document.msExitFullscreen().catch(err => console.log(err));
+                }
+            }
+        }
+
         // --- TIMER VARIABLES ---
         let timerStarted = false;
         let startTime;
@@ -574,11 +602,15 @@
             if (timerStarted) return; // Si ya empezó, no hacer nada
             timerStarted = true;
             
-            // Mostrar reloj flotante
+            // 1. Entrar en Pantalla Completa automáticamente
+            enterFullScreen();
+
+            // 2. Mostrar reloj flotante
             const timerDiv = document.getElementById('floatingTimer');
             timerDiv.classList.remove('opacity-0', 'pointer-events-none');
             timerDiv.classList.add('opacity-100');
             
+            // 3. Iniciar reloj
             startTime = Date.now();
             timerInterval = setInterval(() => {
                 elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
@@ -675,11 +707,9 @@
                 container.parentNode.insertBefore(hintBox, container.nextSibling);
             }
 
-            // 6. EVENT LISTENER PARA EL TEMPORIZADOR
-            // Se activa al momento de interactuar con cualquier input (select, text, textarea)
+            // 6. EVENT LISTENER PARA EL TEMPORIZADOR Y FULLSCREEN
             const allInputs = document.querySelectorAll('.q-input');
             allInputs.forEach(input => {
-                // 'input' funciona bien para textarea y text, 'change' es mejor para select
                 input.addEventListener('input', startTimer, { once: true });
                 input.addEventListener('change', startTimer, { once: true });
             });
@@ -689,7 +719,10 @@
         document.getElementById('examForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // 1. Detener temporizador
+            // 1. Salir de pantalla completa
+            exitFullScreen();
+
+            // 2. Detener temporizador
             const finalTimeStr = stopTimer();
             // Ocultar reloj flotante
             document.getElementById('floatingTimer').classList.add('opacity-0');
@@ -701,7 +734,7 @@
             let score = 0;
             let mistakesList = [];
 
-            // 2. Grade Auto-inputs (max 55 points)
+            // 3. Grade Auto-inputs
             const gradedInputs = document.querySelectorAll('.q-item .q-input:not(textarea)');
             
             gradedInputs.forEach(inputElement => {
@@ -746,14 +779,14 @@
                 }
             });
 
-            // 3. Grade Writing (1 point each if not empty) (max 5 points)
+            // 4. Grade Writing
             document.querySelectorAll('textarea.q-input').forEach(textarea => {
                 if (textarea.value.trim().length > 3) {
                     score++; 
                 }
             });
 
-            // 4. Calculate Vigesimal Note and Letter Grade
+            // 5. Calculate Vigesimal Note and Letter Grade
             let vigesimalStr = "00";
             let letter = "";
             let achievementText = "";
@@ -765,7 +798,6 @@
                 achievementText = "Logro Destacado";
                 cardColorClass = "border-blue-500";
                 textColorClass = "text-blue-600";
-                // Math for vigesimal (18 to 20 range)
                 let v = Math.round(18 + ((score - 53) / (60 - 53)) * 2); 
                 vigesimalStr = v.toString().padStart(2, '0');
             } else if (score >= 41) {
@@ -773,7 +805,6 @@
                 achievementText = "Logro Esperado";
                 cardColorClass = "border-green-500";
                 textColorClass = "text-green-600";
-                // Math for vigesimal (14 to 17 range)
                 let v = Math.round(14 + ((score - 41) / (52 - 41)) * 3);
                 vigesimalStr = v.toString().padStart(2, '0');
             } else if (score >= 31) {
@@ -781,7 +812,6 @@
                 achievementText = "En Proceso";
                 cardColorClass = "border-orange-500";
                 textColorClass = "text-orange-500";
-                // Math for vigesimal (11 to 13 range)
                 let v = Math.round(11 + ((score - 31) / (40 - 31)) * 2);
                 vigesimalStr = v.toString().padStart(2, '0');
             } else {
@@ -789,12 +819,11 @@
                 achievementText = "En Inicio";
                 cardColorClass = "border-red-500";
                 textColorClass = "text-red-600";
-                // Math for vigesimal (0 to 10 range)
                 let v = Math.round((score / 30) * 10);
                 vigesimalStr = v.toString().padStart(2, '0');
             }
 
-            // 5. Update UI with new stats
+            // 6. Update UI with new stats
             document.getElementById('scoreDisplay').textContent = score;
             document.getElementById('vigesimalDisplay').textContent = vigesimalStr;
             
@@ -802,16 +831,14 @@
             const letterDisplay = document.getElementById('letterDisplay');
             const achievementDisplay = document.getElementById('achievementDisplay');
 
-            // Set text & styling for achievement card
             letterDisplay.textContent = letter;
             achievementDisplay.textContent = achievementText;
             
-            // Reset classes
             gradeCard.className = `bg-white p-6 rounded-2xl shadow-md border-b-8 text-center flex flex-col justify-center animate-pop ${cardColorClass}`;
             letterDisplay.className = `text-6xl md:text-7xl font-black mt-2 leading-none ${textColorClass}`;
             achievementDisplay.className = `text-xs md:text-sm uppercase tracking-widest font-bold ${textColorClass}`;
 
-            // 6. Populate Mistakes Summary
+            // 7. Populate Mistakes Summary
             const mistakesContainer = document.getElementById('mistakesContainer');
             const mistakesUl = document.getElementById('mistakesList');
             if (mistakesList.length > 0) {
@@ -821,7 +848,7 @@
                 mistakesContainer.classList.add('hidden');
             }
 
-            // 7. Build Suggested Answers
+            // 8. Build Suggested Answers
             const writingFeedbackList = document.getElementById('writingAnswersList');
             writingFeedbackList.innerHTML = '';
             document.querySelectorAll('textarea.q-input').forEach(textarea => {
@@ -834,8 +861,10 @@
             document.getElementById('resultArea').classList.remove('hidden');
             document.getElementById('writingFeedback').classList.remove('hidden');
             
-            // Scroll to results
-            document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Scroll to results (con un ligero timeout para que el exitFullScreen no afecte el scroll)
+            setTimeout(() => {
+                document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
         });
     </script>
 </body>
