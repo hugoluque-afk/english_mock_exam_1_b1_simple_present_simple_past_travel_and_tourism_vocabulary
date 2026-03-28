@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- translate="no" previene la traducción automática en navegadores como Chrome -->
 <html lang="en" translate="no" class="notranslate">
 <head>
     <meta charset="UTF-8">
@@ -15,15 +14,27 @@
         .correct-text { color: #10b981; }
         .incorrect-text { color: #ef4444; }
         input, select, textarea { transition: all 0.3s ease; }
+        
         /* Animación para el resultado */
         @keyframes popIn {
             0% { transform: scale(0.9); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
         .animate-pop { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        
+        /* Reloj Flotante */
+        #floatingTimer {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
     </style>
 </head>
-<body class="text-gray-800 p-3 md:p-8">
+<body class="text-gray-800 p-3 md:p-8 relative">
+
+    <!-- Reloj Flotante -->
+    <div id="floatingTimer" class="fixed bottom-6 right-6 md:top-6 md:bottom-auto md:right-8 bg-slate-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full shadow-2xl border-2 border-blue-400 font-mono text-xl md:text-2xl z-50 opacity-0 pointer-events-none flex items-center gap-2">
+        <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span id="liveTime">00:00</span>
+    </div>
 
     <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         <div class="bg-blue-600 p-6 md:p-8 text-white text-center">
@@ -115,7 +126,7 @@
                         </select><span id="fb-q9" class="feedback-icon"></span>
                     </div>
                     <div class="q-item">
-                        <p><span class="q-number font-bold text-gray-600"></span> What did David buy at the end of the trip?</p>
+                        <p><span class="q-number font-bold text-gray-600"></span> What did David bought at the end of the trip?</p>
                         <select name="q10" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
                             <option value="">-- Select --</option>
                             <option value="A">A Swiss watch.</option>
@@ -394,39 +405,47 @@
             </div>
 
             <!-- Area de Resultados -->
-            <div id="resultArea" class="hidden mt-10 p-6 md:p-10 rounded-2xl bg-gray-50 border-2 border-gray-200 shadow-inner">
+            <div id="resultArea" class="hidden mt-10 p-4 md:p-10 rounded-2xl bg-gray-50 border-2 border-gray-200 shadow-inner">
                 
                 <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 text-gray-800 tracking-tight animate-pop">Exam Results</h2>
                 
-                <!-- Tarjetas de Calificación Gigantes -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <!-- Tarjetas de Calificación Gigantes (Ahora son 4) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
                     
                     <!-- Puntaje Total -->
                     <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-gray-300 text-center flex flex-col justify-center animate-pop" style="animation-delay: 0.1s;">
-                        <div class="text-sm md:text-base text-gray-500 uppercase tracking-widest font-bold">Total Score</div>
-                        <div class="text-5xl md:text-6xl font-black mt-3 text-gray-800">
-                            <span id="scoreDisplay">0</span><span class="text-2xl md:text-3xl text-gray-400">/60</span>
+                        <div class="text-xs md:text-sm text-gray-500 uppercase tracking-widest font-bold">Total Score</div>
+                        <div class="text-4xl md:text-5xl font-black mt-3 text-gray-800">
+                            <span id="scoreDisplay">0</span><span class="text-xl md:text-2xl text-gray-400">/60</span>
                         </div>
                     </div>
 
                     <!-- Nota Vigesimal -->
                     <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-gray-300 text-center flex flex-col justify-center animate-pop" style="animation-delay: 0.2s;">
-                        <div class="text-sm md:text-base text-gray-500 uppercase tracking-widest font-bold">Grade (0-20)</div>
-                        <div class="text-5xl md:text-6xl font-black mt-3 text-gray-800">
-                            <span id="vigesimalDisplay">00</span><span class="text-2xl md:text-3xl text-gray-400">/20</span>
+                        <div class="text-xs md:text-sm text-gray-500 uppercase tracking-widest font-bold">Grade (0-20)</div>
+                        <div class="text-4xl md:text-5xl font-black mt-3 text-gray-800">
+                            <span id="vigesimalDisplay">00</span><span class="text-xl md:text-2xl text-gray-400">/20</span>
                         </div>
                     </div>
 
-                    <!-- Logro (Español solicitado) -->
-                    <div id="gradeCard" class="bg-white p-6 rounded-2xl shadow-md border-b-8 text-center flex flex-col justify-center animate-pop" style="animation-delay: 0.3s;">
-                        <div class="text-sm md:text-base uppercase tracking-widest font-bold" id="achievementDisplay">Logro</div>
-                        <div class="text-7xl md:text-8xl font-black mt-2 leading-none" id="letterDisplay">A</div>
+                    <!-- Tiempo Demorado -->
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-gray-300 text-center flex flex-col justify-center animate-pop" style="animation-delay: 0.3s;">
+                        <div class="text-xs md:text-sm text-gray-500 uppercase tracking-widest font-bold">Tiempo Demorado</div>
+                        <div class="text-4xl md:text-5xl font-black mt-3 text-blue-600">
+                            <span id="finalTimeDisplay">00:00</span>
+                        </div>
+                    </div>
+
+                    <!-- Logro -->
+                    <div id="gradeCard" class="bg-white p-6 rounded-2xl shadow-md border-b-8 text-center flex flex-col justify-center animate-pop" style="animation-delay: 0.4s;">
+                        <div class="text-xs md:text-sm uppercase tracking-widest font-bold" id="achievementDisplay">Logro</div>
+                        <div class="text-6xl md:text-7xl font-black mt-2 leading-none" id="letterDisplay">A</div>
                     </div>
 
                 </div>
 
                 <!-- Mistakes Summary Panel -->
-                <div id="mistakesContainer" class="hidden bg-white p-5 md:p-8 rounded-xl shadow-md border border-red-200 text-left mb-8 animate-pop" style="animation-delay: 0.4s;">
+                <div id="mistakesContainer" class="hidden bg-white p-5 md:p-8 rounded-xl shadow-md border border-red-200 text-left mb-8 animate-pop" style="animation-delay: 0.5s;">
                     <h4 class="text-xl md:text-2xl font-bold text-red-600 mb-6 border-b border-red-200 pb-3 flex items-center">
                         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                         Mistakes Summary
@@ -436,7 +455,7 @@
                     </ul>
                 </div>
 
-                <div class="text-center animate-pop" style="animation-delay: 0.5s;">
+                <div class="text-center animate-pop" style="animation-delay: 0.6s;">
                     <button type="button" onclick="location.reload()" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-4 px-10 rounded-full transition w-full md:w-auto text-lg shadow-lg">Try Again (Shuffle Questions)</button>
                 </div>
             </div>
@@ -532,6 +551,46 @@
             q55: "Primero necesitas el verbo en pasado afirmativo, y en la segunda parte el auxiliar negativo en pasado."
         };
 
+        // --- TIMER VARIABLES ---
+        let timerStarted = false;
+        let startTime;
+        let timerInterval;
+        let elapsedSeconds = 0;
+
+        // --- TIMER FUNCTIONS ---
+        function formatTime(totalSeconds) {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function updateTimerDisplay() {
+            const formattedTime = formatTime(elapsedSeconds);
+            document.getElementById('liveTime').textContent = formattedTime;
+            return formattedTime;
+        }
+
+        function startTimer() {
+            if (timerStarted) return; // Si ya empezó, no hacer nada
+            timerStarted = true;
+            
+            // Mostrar reloj flotante
+            const timerDiv = document.getElementById('floatingTimer');
+            timerDiv.classList.remove('opacity-0', 'pointer-events-none');
+            timerDiv.classList.add('opacity-100');
+            
+            startTime = Date.now();
+            timerInterval = setInterval(() => {
+                elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            return formatTime(elapsedSeconds);
+        }
+
         // --- SHUFFLING FUNCTIONS ---
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -615,15 +674,34 @@
                 const container = fbSpan.parentElement; 
                 container.parentNode.insertBefore(hintBox, container.nextSibling);
             }
+
+            // 6. EVENT LISTENER PARA EL TEMPORIZADOR
+            // Se activa al momento de interactuar con cualquier input (select, text, textarea)
+            const allInputs = document.querySelectorAll('.q-input');
+            allInputs.forEach(input => {
+                // 'input' funciona bien para textarea y text, 'change' es mejor para select
+                input.addEventListener('input', startTimer, { once: true });
+                input.addEventListener('change', startTimer, { once: true });
+            });
         });
 
         // --- GRADING & LOGIC ---
         document.getElementById('examForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // 1. Detener temporizador
+            const finalTimeStr = stopTimer();
+            // Ocultar reloj flotante
+            document.getElementById('floatingTimer').classList.add('opacity-0');
+            document.getElementById('floatingTimer').classList.remove('opacity-100');
+            
+            // Mostrar tiempo en la tarjeta final
+            document.getElementById('finalTimeDisplay').textContent = timerStarted ? finalTimeStr : "00:00";
+
             let score = 0;
             let mistakesList = [];
 
-            // 1. Grade Auto-inputs (max 55 points)
+            // 2. Grade Auto-inputs (max 55 points)
             const gradedInputs = document.querySelectorAll('.q-item .q-input:not(textarea)');
             
             gradedInputs.forEach(inputElement => {
@@ -668,14 +746,14 @@
                 }
             });
 
-            // 2. Grade Writing (1 point each if not empty) (max 5 points)
+            // 3. Grade Writing (1 point each if not empty) (max 5 points)
             document.querySelectorAll('textarea.q-input').forEach(textarea => {
                 if (textarea.value.trim().length > 3) {
                     score++; 
                 }
             });
 
-            // 3. Calculate Vigesimal Note and Letter Grade
+            // 4. Calculate Vigesimal Note and Letter Grade
             let vigesimalStr = "00";
             let letter = "";
             let achievementText = "";
@@ -716,7 +794,7 @@
                 vigesimalStr = v.toString().padStart(2, '0');
             }
 
-            // 4. Update UI with new stats
+            // 5. Update UI with new stats
             document.getElementById('scoreDisplay').textContent = score;
             document.getElementById('vigesimalDisplay').textContent = vigesimalStr;
             
@@ -730,10 +808,10 @@
             
             // Reset classes
             gradeCard.className = `bg-white p-6 rounded-2xl shadow-md border-b-8 text-center flex flex-col justify-center animate-pop ${cardColorClass}`;
-            letterDisplay.className = `text-7xl md:text-8xl font-black mt-2 leading-none ${textColorClass}`;
-            achievementDisplay.className = `text-sm md:text-base uppercase tracking-widest font-bold ${textColorClass}`;
+            letterDisplay.className = `text-6xl md:text-7xl font-black mt-2 leading-none ${textColorClass}`;
+            achievementDisplay.className = `text-xs md:text-sm uppercase tracking-widest font-bold ${textColorClass}`;
 
-            // 5. Populate Mistakes Summary
+            // 6. Populate Mistakes Summary
             const mistakesContainer = document.getElementById('mistakesContainer');
             const mistakesUl = document.getElementById('mistakesList');
             if (mistakesList.length > 0) {
@@ -743,7 +821,7 @@
                 mistakesContainer.classList.add('hidden');
             }
 
-            // 6. Build Suggested Answers
+            // 7. Build Suggested Answers
             const writingFeedbackList = document.getElementById('writingAnswersList');
             writingFeedbackList.innerHTML = '';
             document.querySelectorAll('textarea.q-input').forEach(textarea => {
