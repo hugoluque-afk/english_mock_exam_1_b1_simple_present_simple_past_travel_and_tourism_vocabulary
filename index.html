@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<!-- translate="no" previene la traducción automática en navegadores como Chrome -->
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>Mock Exam B1 - Travel & Tourism</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .correct-bg { background-color: #d1fae5 !important; border-color: #10b981 !important; }
+        .incorrect-bg { background-color: #fee2e2 !important; border-color: #ef4444 !important; }
+        .feedback-icon { display: none; margin-left: 8px; font-weight: bold; }
+        .correct-text { color: #10b981; }
+        .incorrect-text { color: #ef4444; }
+        input, select, textarea { transition: all 0.3s ease; }
+        /* Animación para el resultado */
+        @keyframes popIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+    </style>
+</head>
+<body class="text-gray-800 p-3 md:p-8">
+
+    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="bg-blue-600 p-6 md:p-8 text-white text-center">
+            <h1 class="text-3xl md:text-4xl font-bold">B1 English Mock Exam</h1>
+            <p class="mt-2 text-blue-100 text-sm md:text-base">Simple Present, Simple Past & Travel Vocabulary</p>
+        </div>
+
+        <form id="examForm" class="p-4 md:p-10 space-y-12">
+            
+            <!-- SECTION 1: Reading Comprehension -->
+            <section>
+                <h2 class="text-2xl font-bold border-b-2 border-blue-500 pb-2 mb-4">SECTION 1: Reading Comprehension</h2>
+                <div class="bg-gray-50 p-4 rounded border mb-6 text-gray-700 italic text-sm md:text-base">
+                    "Last winter, David and his friends decided to go on an <strong>excursion</strong> to the Swiss Alps. Usually, they travel during the <strong>off-peak</strong> season to save money, but this time they went during the <strong>peak season</strong> because they wanted to ski. They made a <strong>reservation</strong> at a cozy <strong>lodge</strong> and paid a 20% <strong>deposit</strong>.<br><br>
+                    The trip started with a problem. Their first flight had a delay, so they missed their <strong>connection</strong> in Paris. They had to wait in the <strong>terminal</strong> for six hours. Fortunately, the airline gave them a food <strong>voucher</strong>. When they finally arrived in Switzerland, they went to <strong>luggage claim</strong>, but David’s bag wasn't there! He was very stressed. <br><br>
+                    Despite the bad start, the rest of the trip was amazing. The <strong>landscape</strong> was extremely <strong>picturesque</strong>, covered in white snow. The lodge didn't have many <strong>amenities</strong> like a gym or a pool, but it was warm and comfortable. On the last day, David bought a beautiful Swiss watch as a <strong>souvenir</strong>. Before leaving, the airline found his bag and sent it to his house. He was relieved and didn't ask for a <strong>refund</strong>."
+                </div>
+
+                <p class="font-semibold mb-4 text-blue-800">Part A: True (T) or False (F)?</p>
+                <div id="sec1-tf" class="q-group space-y-3 pl-2 md:pl-4">
+                    <div class="q-item flex items-center flex-wrap gap-2">
+                        <select name="q1" class="q-input border rounded p-1 w-16 text-center focus:ring-2 focus:ring-blue-400">
+                            <option value=""></option><option value="T">T</option><option value="F">F</option>
+                        </select>
+                        <span class="flex-1"><span class="q-number font-bold text-gray-600"></span> David and his friends usually travel when prices are highest. <span id="fb-q1" class="feedback-icon"></span></span>
+                    </div>
+                    <div class="q-item flex items-center flex-wrap gap-2">
+                        <select name="q2" class="q-input border rounded p-1 w-16 text-center focus:ring-2 focus:ring-blue-400">
+                            <option value=""></option><option value="T">T</option><option value="F">F</option>
+                        </select>
+                        <span class="flex-1"><span class="q-number font-bold text-gray-600"></span> They paid the full price of the lodge in advance. <span id="fb-q2" class="feedback-icon"></span></span>
+                    </div>
+                    <div class="q-item flex items-center flex-wrap gap-2">
+                        <select name="q3" class="q-input border rounded p-1 w-16 text-center focus:ring-2 focus:ring-blue-400">
+                            <option value=""></option><option value="T">T</option><option value="F">F</option>
+                        </select>
+                        <span class="flex-1"><span class="q-number font-bold text-gray-600"></span> They waited six hours in Paris because they missed their second flight. <span id="fb-q3" class="feedback-icon"></span></span>
+                    </div>
+                    <div class="q-item flex items-center flex-wrap gap-2">
+                        <select name="q4" class="q-input border rounded p-1 w-16 text-center focus:ring-2 focus:ring-blue-400">
+                            <option value=""></option><option value="T">T</option><option value="F">F</option>
+                        </select>
+                        <span class="flex-1"><span class="q-number font-bold text-gray-600"></span> The lodge had a very nice swimming pool. <span id="fb-q4" class="feedback-icon"></span></span>
+                    </div>
+                    <div class="q-item flex items-center flex-wrap gap-2">
+                        <select name="q5" class="q-input border rounded p-1 w-16 text-center focus:ring-2 focus:ring-blue-400">
+                            <option value=""></option><option value="T">T</option><option value="F">F</option>
+                        </select>
+                        <span class="flex-1"><span class="q-number font-bold text-gray-600"></span> David returned home without his bag, but it was delivered to him later. <span id="fb-q5" class="feedback-icon"></span></span>
+                    </div>
+                </div>
+
+                <p class="font-semibold mt-8 mb-4 text-blue-800">Part B: Choose the correct answer based on the text.</p>
+                <div id="sec1-mc" class="q-group space-y-6 pl-2 md:pl-4">
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> Why did they travel during peak season this time?</p>
+                        <select name="q6" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">Because they wanted to save money.</option>
+                            <option value="B">Because they wanted to go skiing.</option>
+                            <option value="C">Because the lodge was cheaper.</option>
+                        </select><span id="fb-q6" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> What did the airline give them in Paris?</p>
+                        <select name="q7" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">A free hotel room.</option>
+                            <option value="B">A new boarding pass.</option>
+                            <option value="C">A voucher for food.</option>
+                        </select><span id="fb-q7" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> What happened at the luggage claim area?</p>
+                        <select name="q8" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">David's bag was missing.</option>
+                            <option value="B">They found a souvenir.</option>
+                            <option value="C">The luggage was damaged.</option>
+                        </select><span id="fb-q8" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> How does the text describe the landscape?</p>
+                        <select name="q9" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">Flat and boring.</option>
+                            <option value="B">Full of historical landmarks.</option>
+                            <option value="C">Very beautiful and scenic.</option>
+                        </select><span id="fb-q9" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> What did David buy at the end of the trip?</p>
+                        <select name="q10" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">A Swiss watch.</option>
+                            <option value="B">Skiing equipment.</option>
+                            <option value="C">A traditional chocolate box.</option>
+                        </select><span id="fb-q10" class="feedback-icon"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: Vocabulary -->
+            <section>
+                <h2 class="text-2xl font-bold border-b-2 border-blue-500 pb-2 mb-4">SECTION 2: Vocabulary</h2>
+                <p class="mb-4 text-sm md:text-base">Select the correct travel word for each sentence.</p>
+                <div id="sec2-vocab" class="q-group grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> We asked the <select name="q11" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> to book a table for dinner at a nice restaurant. <span id="fb-q11" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> The pilot announced that we might experience some <select name="q12" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> due to the storm. <span id="fb-q12" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> My morning <select name="q13" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> to work takes 45 minutes on the bus. <span id="fb-q13" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> Is there any <select name="q14" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> at this hotel? We need a room for two. <span id="fb-q14" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> They booked an <select name="q15" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> resort, so all their meals and drinks are free. <span id="fb-q15" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> The Colosseum is a famous <select name="q16" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> in Rome. <span id="fb-q16" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> We took a free <select name="q17" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> bus from the airport to our hotel. <span id="fb-q17" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> Please have your ID and <select name="q18" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> ready before entering the airplane. <span id="fb-q18" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> If you cancel your flight now, you will not get a <select name="q19" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select>. <span id="fb-q19" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> The tour guide gave us an <select name="q20" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> showing all the places we will visit today. <span id="fb-q20" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> We went to <select name="q21" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> to pick up our suitcases. <span id="fb-q21" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> Students often stay in a <select name="q22" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> because it's much cheaper than a hotel. <span id="fb-q22" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> I bought a small Eiffel Tower key-ring as a <select name="q23" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select>. <span id="fb-q23" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> Look at the <select name="q24" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> board; our train leaves in 10 minutes. <span id="fb-q24" class="feedback-icon"></span></div>
+                    <div class="q-item flex flex-col md:block"><span class="q-number font-bold text-gray-600"></span> We stopped at a beautiful <select name="q25" class="q-input border rounded p-1 mx-0 md:mx-1 mt-1 md:mt-0 w-full md:w-auto vocab-select focus:ring-2 focus:ring-blue-400"></select> to take photos of the mountains. <span id="fb-q25" class="feedback-icon"></span></div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Grammar -->
+            <section>
+                <h2 class="text-2xl font-bold border-b-2 border-blue-500 pb-2 mb-4">SECTION 3: Grammar - Present & Past</h2>
+                
+                <p class="font-semibold text-blue-800 mb-2">Part A: Fill in the blanks with the correct form of the verb in brackets (Simple Present or Simple Past).</p>
+                <p class="text-xs md:text-sm text-gray-500 mb-6 bg-yellow-50 p-2 border-l-4 border-yellow-400"><em>Use full forms or contractions for negatives (e.g., "did not go" or "didn't go"). Type lowercase letters only.</em></p>
+                
+                <div id="sec3-fill" class="q-group space-y-6 pl-2 md:pl-4">
+                    <div class="q-item leading-loose">
+                        <span class="q-number font-bold text-gray-600"></span> She <input type="text" name="q26" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (travel) to New York every winter. <span id="fb-q26" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item leading-loose">
+                        <span class="q-number font-bold text-gray-600"></span> Last week, we <input type="text" name="q27" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (not / visit) the museum because it was closed. <span id="fb-q27" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item leading-loose">
+                        <span class="q-number font-bold text-gray-600"></span> <input type="text" name="q28" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (you / confirm) the reservation yesterday morning? <span id="fb-q28" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item leading-loose">
+                        <span class="q-number font-bold text-gray-600"></span> The train usually <input type="text" name="q29" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (leave) from terminal 3. <span id="fb-q29" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item leading-loose">
+                        <span class="q-number font-bold text-gray-600"></span> I <input type="text" name="q30" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (lose) my passport at the airport two days ago! <span id="fb-q30" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item leading-loose">
+                        <span class="q-number font-bold text-gray-600"></span> The concierge <input type="text" name="q31" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-40 text-center focus:border-blue-500"> (not / speak) Spanish, only English and French. <span id="fb-q31" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item leading-loose">
+                        <span class="q-number font-bold text-gray-600"></span> <input type="text" name="q32" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (they / book) their flights online normally? <span id="fb-q32" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item leading-loose">
+                        <span class="q-number font-bold text-gray-600"></span> He <input type="text" name="q33" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (pay) the deposit for the lodge last month. <span id="fb-q33" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item leading-loose">
+                        <span class="q-number font-bold text-gray-600"></span> We <input type="text" name="q34" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (take) a lot of photos during the guided tour yesterday. <span id="fb-q34" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item leading-loose">
+                        <span class="q-number font-bold text-gray-600"></span> Why <input type="text" name="q35" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-40 text-center focus:border-blue-500"> (the bus / arrive) so late this morning? <span id="fb-q35" class="feedback-icon"></span>
+                    </div>
+                </div>
+
+                <p class="font-semibold text-blue-800 mt-10 mb-4">Part B: Sentence Transformation. Choose the correct transformed sentence.</p>
+                <div id="sec3-trans" class="q-group space-y-6 pl-2 md:pl-4">
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> <em>"The tourists visited the heritage site."</em> (Change to Negative)</p>
+                        <select name="q36" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">The tourists don't visit the heritage site.</option>
+                            <option value="B">The tourists didn't visited the heritage site.</option>
+                            <option value="C">The tourists didn't visit the heritage site.</option>
+                        </select><span id="fb-q36" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> <em>"Does she buy souvenirs?"</em> (Change to Simple Past - Interrogative)</p>
+                        <select name="q37" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">Did she buy souvenirs?</option>
+                            <option value="B">Did she bought souvenirs?</option>
+                            <option value="C">Do she bought souvenirs?</option>
+                        </select><span id="fb-q37" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> <em>"We didn't rent a car."</em> (Change to Affirmative)</p>
+                        <select name="q38" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">We rent a car.</option>
+                            <option value="B">We rented a car.</option>
+                            <option value="C">We rents a car.</option>
+                        </select><span id="fb-q38" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> <em>"The flight departs at 8 PM."</em> (Change to Interrogative)</p>
+                        <select name="q39" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">Does the flight departs at 8 PM?</option>
+                            <option value="B">Do the flight depart at 8 PM?</option>
+                            <option value="C">Does the flight depart at 8 PM?</option>
+                        </select><span id="fb-q39" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> <em>"I lose my boarding pass."</em> (Change to Simple Past - Affirmative)</p>
+                        <select name="q40" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">I losed my boarding pass.</option>
+                            <option value="B">I lost my boarding pass.</option>
+                            <option value="C">I didn't lose my boarding pass.</option>
+                        </select><span id="fb-q40" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> <em>"They stay in a suite."</em> (Change to Simple Past - Affirmative)</p>
+                        <select name="q41" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">They stayed in a suite.</option>
+                            <option value="B">They stay in a suite.</option>
+                            <option value="C">They steid in a suite.</option>
+                        </select><span id="fb-q41" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> <em>"Did the receptionist give you the keys?"</em> (Change to Simple Present - Affirmative)</p>
+                        <select name="q42" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">The receptionist give you the keys.</option>
+                            <option value="B">The receptionist gives you the keys.</option>
+                            <option value="C">The receptionist gave you the keys.</option>
+                        </select><span id="fb-q42" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> <em>"He doesn't complain about the food."</em> (Change to Simple Past - Negative)</p>
+                        <select name="q43" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">He didn't complain about the food.</option>
+                            <option value="B">He didn't complained about the food.</option>
+                            <option value="C">He don't complain about the food.</option>
+                        </select><span id="fb-q43" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> <em>"The shuttle bus arrived late."</em> (Change to Interrogative)</p>
+                        <select name="q44" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">Did the shuttle bus arrived late?</option>
+                            <option value="B">Does the shuttle bus arrive late?</option>
+                            <option value="C">Did the shuttle bus arrive late?</option>
+                        </select><span id="fb-q44" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> <em>"Do you check-in online?"</em> (Change to Affirmative)</p>
+                        <select name="q45" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-lg focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option>
+                            <option value="A">You check-in online.</option>
+                            <option value="B">You checks-in online.</option>
+                            <option value="C">You checked-in online.</option>
+                        </select><span id="fb-q45" class="feedback-icon"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: Multiple Choice -->
+            <section>
+                <h2 class="text-2xl font-bold border-b-2 border-blue-500 pb-2 mb-4">SECTION 4: Multiple Choice</h2>
+                <div id="sec4-mc" class="q-group space-y-6 pl-2 md:pl-4">
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> We wanted to see the city, so we went on a _________.</p>
+                        <select name="q46" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-md focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option><option value="A">turbulence</option><option value="B">guided tour</option><option value="C">boarding pass</option>
+                        </select><span id="fb-q46" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> She ________ her luggage in the room before going to the beach yesterday.</p>
+                        <select name="q47" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-md focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option><option value="A">leave</option><option value="B">left</option><option value="C">leaved</option>
+                        </select><span id="fb-q47" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> A _________ is a small, stylish hotel in the city.</p>
+                        <select name="q48" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-md focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option><option value="A">boutique hotel</option><option value="B">hostel</option><option value="C">lodge</option>
+                        </select><span id="fb-q48" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> _________ you like the food at the resort last night?</p>
+                        <select name="q49" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-md focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option><option value="A">Do</option><option value="B">Were</option><option value="C">Did</option>
+                        </select><span id="fb-q49" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> Our hotel had great _________, like free Wi-Fi and a huge gym.</p>
+                        <select name="q50" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-md focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option><option value="A">amenities</option><option value="B">landmarks</option><option value="C">fares</option>
+                        </select><span id="fb-q50" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> My brother never _________ photos because he doesn't have a good camera.</p>
+                        <select name="q51" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-md focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option><option value="A">take</option><option value="B">took</option><option value="C">takes</option>
+                        </select><span id="fb-q51" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> The taxi _________ was too expensive, so we walked.</p>
+                        <select name="q52" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-md focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option><option value="A">fare</option><option value="B">deposit</option><option value="C">refund</option>
+                        </select><span id="fb-q52" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> What time _________ the museum close on Sundays?</p>
+                        <select name="q53" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-md focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option><option value="A">do</option><option value="B">did</option><option value="C">does</option>
+                        </select><span id="fb-q53" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> A _________ is a waiting period at the airport between two flights.</p>
+                        <select name="q54" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-md focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option><option value="A">layover</option><option value="B">departure</option><option value="C">terminal</option>
+                        </select><span id="fb-q54" class="feedback-icon"></span>
+                    </div>
+                    <div class="q-item">
+                        <p><span class="q-number font-bold text-gray-600"></span> I _________ to the receptionist, but she _________ have my reservation.</p>
+                        <select name="q55" class="q-input shuffle-options border rounded p-2 mt-2 w-full max-w-md focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select --</option><option value="A">speak / didn't</option><option value="B">spoke / didn't</option><option value="C">spoke / doesn't</option>
+                        </select><span id="fb-q55" class="feedback-icon"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: Writing -->
+            <section>
+                <h2 class="text-2xl font-bold border-b-2 border-blue-500 pb-2 mb-4">SECTION 5: Writing</h2>
+                <p class="mb-6 text-gray-600 text-sm md:text-base"><em>Note: You get 1 point for each text box you complete. Write your best answer, and when you finish the exam, you will see some suggested answers to compare.</em></p>
+                <div id="sec5-writing" class="q-group space-y-8">
+                    <div class="q-item">
+                        <label class="block font-semibold mb-2"><span class="q-number font-bold text-gray-600"></span> Describe your last vacation. Where did you go and what kind of accommodation did you stay in?</label>
+                        <textarea name="q56" data-suggested="Last summer, I went to London with my family. We stayed in a nice boutique hotel in the city center." class="q-input w-full border rounded p-3 h-24 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Write at least a few words to get the point..."></textarea>
+                    </div>
+                    <div class="q-item">
+                        <label class="block font-semibold mb-2"><span class="q-number font-bold text-gray-600"></span> What do you prefer: an all-inclusive resort or a budget hostel? Why? (Use Simple Present)</label>
+                        <textarea name="q57" data-suggested="I prefer an all-inclusive resort because I like to relax. I don't want to cook or look for restaurants when I travel." class="q-input w-full border rounded p-3 h-24 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Write at least a few words to get the point..."></textarea>
+                    </div>
+                    <div class="q-item">
+                        <label class="block font-semibold mb-2"><span class="q-number font-bold text-gray-600"></span> Think about a travel problem (e.g., turbulence, lost luggage, cancellation). What happened? (Use Simple Past)</label>
+                        <textarea name="q58" data-suggested="During my trip to Brazil, my flight had a lot of turbulence. I felt very nervous, but the flight attendants helped me calm down." class="q-input w-full border rounded p-3 h-24 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Write at least a few words to get the point..."></textarea>
+                    </div>
+                    <div class="q-item">
+                        <label class="block font-semibold mb-2"><span class="q-number font-bold text-gray-600"></span> What do you usually do while you are waiting in the airport terminal?</label>
+                        <textarea name="q59" data-suggested="I usually read a book or buy souvenirs in the duty-free shops. Sometimes I drink coffee in a cafe." class="q-input w-full border rounded p-3 h-24 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Write at least a few words to get the point..."></textarea>
+                    </div>
+                    <div class="q-item">
+                        <label class="block font-semibold mb-2"><span class="q-number font-bold text-gray-600"></span> Imagine you are a tour guide. Recommend a famous landmark or heritage site in your country.</label>
+                        <textarea name="q60" data-suggested="I recommend visiting Machu Picchu in Peru. It is a beautiful heritage site with incredible landscapes." class="q-input w-full border rounded p-3 h-24 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Write at least a few words to get the point..."></textarea>
+                    </div>
+                </div>
+                
+                <!-- Feedback div for writing part (hidden initially) -->
+                <div id="writingFeedback" class="hidden mt-8 bg-blue-50 p-5 rounded border border-blue-200">
+                    <h3 class="font-bold text-blue-800 mb-4 text-lg">Suggested Answers (Self-Evaluation):</h3>
+                    <ul id="writingAnswersList" class="list-disc pl-5 space-y-3 text-sm md:text-base text-gray-700">
+                        <!-- Respuestas sugeridas inyectadas dinámicamente según el orden -->
+                    </ul>
+                </div>
+            </section>
+
+            <div class="text-center mt-12 border-t pt-8">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 transform hover:scale-105 text-lg w-full md:w-auto">
+                    Finish & Grade My Exam
+                </button>
+            </div>
+
+            <!-- Area de Resultados -->
+            <div id="resultArea" class="hidden mt-10 p-6 md:p-10 rounded-2xl bg-gray-50 border-2 border-gray-200 shadow-inner">
+                
+                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 text-gray-800 tracking-tight animate-pop">Exam Results</h2>
+                
+                <!-- Tarjetas de Calificación Gigantes -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    
+                    <!-- Puntaje Total -->
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-gray-300 text-center flex flex-col justify-center animate-pop" style="animation-delay: 0.1s;">
+                        <div class="text-sm md:text-base text-gray-500 uppercase tracking-widest font-bold">Total Score</div>
+                        <div class="text-5xl md:text-6xl font-black mt-3 text-gray-800">
+                            <span id="scoreDisplay">0</span><span class="text-2xl md:text-3xl text-gray-400">/60</span>
+                        </div>
+                    </div>
+
+                    <!-- Nota Vigesimal -->
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-gray-300 text-center flex flex-col justify-center animate-pop" style="animation-delay: 0.2s;">
+                        <div class="text-sm md:text-base text-gray-500 uppercase tracking-widest font-bold">Grade (0-20)</div>
+                        <div class="text-5xl md:text-6xl font-black mt-3 text-gray-800">
+                            <span id="vigesimalDisplay">00</span><span class="text-2xl md:text-3xl text-gray-400">/20</span>
+                        </div>
+                    </div>
+
+                    <!-- Logro (Español solicitado) -->
+                    <div id="gradeCard" class="bg-white p-6 rounded-2xl shadow-md border-b-8 text-center flex flex-col justify-center animate-pop" style="animation-delay: 0.3s;">
+                        <div class="text-sm md:text-base uppercase tracking-widest font-bold" id="achievementDisplay">Logro</div>
+                        <div class="text-7xl md:text-8xl font-black mt-2 leading-none" id="letterDisplay">A</div>
+                    </div>
+
+                </div>
+
+                <!-- Mistakes Summary Panel -->
+                <div id="mistakesContainer" class="hidden bg-white p-5 md:p-8 rounded-xl shadow-md border border-red-200 text-left mb-8 animate-pop" style="animation-delay: 0.4s;">
+                    <h4 class="text-xl md:text-2xl font-bold text-red-600 mb-6 border-b border-red-200 pb-3 flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        Mistakes Summary
+                    </h4>
+                    <ul id="mistakesList" class="space-y-4 text-sm md:text-base text-gray-700">
+                        <!-- Errores inyectados via JS -->
+                    </ul>
+                </div>
+
+                <div class="text-center animate-pop" style="animation-delay: 0.5s;">
+                    <button type="button" onclick="location.reload()" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-4 px-10 rounded-full transition w-full md:w-auto text-lg shadow-lg">Try Again (Shuffle Questions)</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // --- DATA & CONFIGURATION ---
+        let vocabWords = [
+            "Concierge", "Turbulence", "Commute", "Vacancy", 
+            "All-inclusive", "Landmark", "Shuttle", "Boarding Pass", 
+            "Refund", "Itinerary", "Luggage Claim", "Hostel", 
+            "Souvenir", "Departure", "Viewpoint"
+        ];
+
+        const correctAnswers = {
+            q1: "F", q2: "F", q3: "T", q4: "F", q5: "T",
+            q6: "B", q7: "C", q8: "A", q9: "C", q10: "A",
+            q11: "Concierge", q12: "Turbulence", q13: "Commute", q14: "Vacancy", q15: "All-inclusive",
+            q16: "Landmark", q17: "Shuttle", q18: "Boarding Pass", q19: "Refund", q20: "Itinerary",
+            q21: "Luggage Claim", q22: "Hostel", q23: "Souvenir", q24: "Departure", q25: "Viewpoint",
+            q26: ["travels"], 
+            q27: ["didn't visit", "did not visit"], 
+            q28: ["did you confirm"], 
+            q29: ["leaves"], 
+            q30: ["lost"], 
+            q31: ["doesn't speak", "does not speak", "didn't speak", "did not speak"],
+            q32: ["do they book"], 
+            q33: ["paid"], 
+            q34: ["took"], 
+            q35: ["did the bus arrive"],
+            q36: "C", q37: "A", q38: "B", q39: "C", q40: "B",
+            q41: "A", q42: "B", q43: "A", q44: "C", q45: "A",
+            q46: "B", q47: "B", q48: "A", q49: "C", q50: "A",
+            q51: "C", q52: "A", q53: "C", q54: "A", q55: "B"
+        };
+
+        const hints = {
+            q1: "Lee la segunda oración del texto. ¿Cuándo viajan usualmente para ahorrar dinero?",
+            q2: "Busca la palabra 'deposit'. ¿Significa pagar el 100% de una vez?",
+            q3: "Revisa el segundo párrafo. ¿Por qué tuvieron que esperar en la terminal?",
+            q4: "Busca la palabra 'amenities' en el tercer párrafo. ¿Qué instalaciones no tenía?",
+            q5: "Lee las últimas dos oraciones del texto para saber el destino final de la maleta.",
+            q6: "Busca 'peak season' en el primer párrafo. ¿Cuál fue el motivo principal de ir en esa fecha?",
+            q7: "Revisa la oración que empieza con 'Fortunately...' en el segundo párrafo.",
+            q8: "Lee el final del segundo párrafo. ¿Cuál fue el motivo de estrés de David?",
+            q9: "Busca la palabra 'landscape' (paisaje). ¿Qué adjetivo la acompaña?",
+            q10: "Busca la palabra 'souvenir' en el último párrafo.",
+            q11: "Es la persona del hotel encargada de ayudar a los huéspedes con reservas y recomendaciones locales.",
+            q12: "Movimiento brusco del avión, generalmente debido al mal clima o corrientes de aire.",
+            q13: "El viaje diario o trayecto que haces de tu casa al trabajo y viceversa.",
+            q14: "Significa que hay espacio o habitaciones disponibles (libres) en un hotel.",
+            q15: "Tipo de paquete o resort donde todas las comidas y bebidas ya están pagadas.",
+            q16: "Un monumento, edificio o lugar histórico que es muy famoso y reconocible.",
+            q17: "Un bus o vehículo que hace viajes regulares cortos (ej. del aeropuerto al hotel).",
+            q18: "El documento impreso o digital que necesitas mostrar para poder subir al avión.",
+            q19: "La devolución de tu dinero cuando cancelas un servicio o compraste algo defectuoso.",
+            q20: "El plan detallado, ruta o lista de lugares que vas a visitar en tu viaje.",
+            q21: "La zona del aeropuerto, donde están las cintas transportadoras, para recoger tus maletas.",
+            q22: "Un tipo de alojamiento económico y generalmente con habitaciones compartidas.",
+            q23: "Un recuerdo u objeto pequeño que compras en un viaje para ti o para regalar.",
+            q24: "La salida o momento en que un avión, tren o bus inicia su viaje.",
+            q25: "Un lugar alto o estratégico que ofrece una excelente vista panorámica (mirador).",
+            q26: "'Every winter' indica un hábito (Presente Simple). No olvides la 's' porque el sujeto es 'She'.",
+            q27: "'Last week' indica Pasado Simple. Usa el auxiliar negativo del pasado y el verbo en su forma base.",
+            q28: "Es una pregunta en pasado ('yesterday'). Usa el auxiliar correspondiente al inicio.",
+            q29: "'Usually' indica Presente Simple. 'The train' equivale a 'It'.",
+            q30: "'Two days ago' indica Pasado Simple. Cuidado, es un verbo irregular.",
+            q31: "Es un hecho general (Presente). Usa el auxiliar negativo para 'The concierge' (he/she).",
+            q32: "'Normally' indica Presente Simple. Empieza la pregunta con el auxiliar para 'they'.",
+            q33: "'Last month' indica Pasado Simple. Verbo irregular.",
+            q34: "'Yesterday' indica Pasado Simple. Verbo irregular.",
+            q35: "Pregunta sobre un evento terminado ('this morning'). Empieza con el auxiliar de pasado.",
+            q36: "En negativo pasado, el auxiliar es 'didn't' y el verbo principal NO cambia.",
+            q37: "Para preguntar en pasado, el auxiliar es 'Did' y el verbo vuelve a su forma original.",
+            q38: "Para hacerlo afirmativo, quita el 'didn't' y conjuga el verbo regular en pasado ('ed').",
+            q39: "El auxiliar para 'the flight' (it) en pregunta presente es 'Does'. El verbo principal pierde la 's'.",
+            q40: "El pasado afirmativo de 'lose' es irregular (no termina en 'ed').",
+            q41: "El verbo 'stay' es regular, solo tienes que agregar la terminación del pasado.",
+            q42: "Quita 'Did'. 'The receptionist' equivale a he/she, por lo que el verbo necesita 's' en presente.",
+            q43: "Simplemente cambia el auxiliar negativo del presente ('doesn't') al del pasado.",
+            q44: "Una pregunta en pasado empieza con 'Did', lo que hace que el verbo principal pierda la 'ed'.",
+            q45: "Solo elimina el auxiliar de pregunta 'Do'. El verbo queda igual para el sujeto 'you'.",
+            q46: "Si vas con un guía para ver la ciudad, estás tomando un...",
+            q47: "Pasado irregular del verbo 'leave' (dejar/abandonar).",
+            q48: "Es un término para un hotel pequeño, estilizado, exclusivo y con personalidad propia.",
+            q49: "La pregunta se refiere a 'last night' (pasado). Necesitas un auxiliar de pasado.",
+            q50: "Son las comodidades, instalaciones o servicios extras que ofrece un hotel (piscina, wifi, gimnasio).",
+            q51: "'My brother' equivale a 'he'. En presente afirmativo el verbo necesita llevar una 's'.",
+            q52: "Es la tarifa, precio o costo que pagas por usar un transporte (taxi, bus, tren).",
+            q53: "Pregunta en presente ('on Sundays') para 'the museum' (equivale a 'it').",
+            q54: "Es el término en inglés para una escala o tiempo de espera en el aeropuerto entre dos vuelos.",
+            q55: "Primero necesitas el verbo en pasado afirmativo, y en la segunda parte el auxiliar negativo en pasado."
+        };
+
+        // --- SHUFFLING FUNCTIONS ---
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function shuffleDOMChildren(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const items = Array.from(container.querySelectorAll(':scope > .q-item'));
+            shuffleArray(items);
+            items.forEach(item => container.appendChild(item));
+        }
+
+        function shuffleSelectOptions() {
+            const selects = document.querySelectorAll('.shuffle-options');
+            selects.forEach(select => {
+                const options = Array.from(select.options);
+                const firstOption = options.shift(); 
+                shuffleArray(options);
+                select.innerHTML = '';
+                select.appendChild(firstOption);
+                options.forEach(opt => select.appendChild(opt));
+            });
+        }
+
+        // --- INITIALIZATION ---
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Shuffle Vocabulary
+            shuffleArray(vocabWords);
+            document.querySelectorAll('.vocab-select').forEach(select => {
+                select.innerHTML = '<option value="">-- Select --</option>';
+                vocabWords.forEach(word => {
+                    let option = document.createElement('option');
+                    option.value = word; option.textContent = word;
+                    select.appendChild(option);
+                });
+            });
+
+            // 2. Shuffle Question Groups
+            const groupsToShuffle = ['sec1-tf', 'sec1-mc', 'sec2-vocab', 'sec3-fill', 'sec3-trans', 'sec4-mc', 'sec5-writing'];
+            groupsToShuffle.forEach(id => shuffleDOMChildren(id));
+
+            // 3. Shuffle Select Options
+            shuffleSelectOptions();
+
+            // 4. Dynamically re-number questions
+            document.querySelectorAll('.q-item').forEach((item, index) => {
+                const visualNum = index + 1;
+                const numSpan = item.querySelector('.q-number');
+                if (numSpan) numSpan.textContent = visualNum + ". ";
+                const inputElement = item.querySelector('.q-input');
+                if (inputElement) inputElement.dataset.visualNum = visualNum;
+            });
+
+            // 5. Inject Hints
+            for (const [qId, hintText] of Object.entries(hints)) {
+                const fbSpan = document.getElementById(`fb-${qId}`);
+                if (!fbSpan) continue;
+
+                const btn = document.createElement('button');
+                btn.type = 'button'; btn.innerHTML = 'Hint';
+                btn.className = 'ml-3 text-xs text-gray-400 hover:text-blue-500 underline decoration-dashed focus:outline-none transition-colors cursor-pointer';
+                btn.onclick = (e) => {
+                    e.preventDefault(); e.stopPropagation();
+                    const hintBox = document.getElementById(`hintbox-${qId}`);
+                    if(hintBox) hintBox.classList.toggle('hidden');
+                };
+                
+                fbSpan.parentNode.insertBefore(btn, fbSpan.nextSibling);
+
+                const hintBox = document.createElement('div');
+                hintBox.id = `hintbox-${qId}`;
+                hintBox.setAttribute("lang", "es");
+                hintBox.className = 'hidden mt-2 mb-3 p-3 bg-gray-50 text-gray-600 text-sm md:text-base border-l-4 border-blue-400 rounded-r shadow-sm w-full max-w-2xl';
+                hintBox.innerHTML = `<strong>💡 Pista:</strong> ${hintText}`;
+
+                const container = fbSpan.parentElement; 
+                container.parentNode.insertBefore(hintBox, container.nextSibling);
+            }
+        });
+
+        // --- GRADING & LOGIC ---
+        document.getElementById('examForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let score = 0;
+            let mistakesList = [];
+
+            // 1. Grade Auto-inputs (max 55 points)
+            const gradedInputs = document.querySelectorAll('.q-item .q-input:not(textarea)');
+            
+            gradedInputs.forEach(inputElement => {
+                let qId = inputElement.name;
+                let visualNum = inputElement.dataset.visualNum;
+                let feedbackSpan = document.getElementById(`fb-${qId}`);
+                if (!feedbackSpan) return;
+
+                let userAnswerRaw = inputElement.value;
+                let userAnswer = userAnswerRaw.trim().toLowerCase();
+                let isCorrect = false;
+
+                if (Array.isArray(correctAnswers[qId])) {
+                    if (correctAnswers[qId].includes(userAnswer)) isCorrect = true;
+                } else {
+                    if (userAnswer === correctAnswers[qId].toLowerCase()) isCorrect = true;
+                }
+
+                inputElement.classList.remove('correct-bg', 'incorrect-bg');
+                feedbackSpan.style.display = "inline";
+
+                if (isCorrect) {
+                    score++;
+                    inputElement.classList.add('correct-bg');
+                    feedbackSpan.textContent = "✔";
+                    feedbackSpan.className = "feedback-icon correct-text";
+                } else {
+                    inputElement.classList.add('incorrect-bg');
+                    feedbackSpan.textContent = "✘";
+                    feedbackSpan.className = "feedback-icon incorrect-text";
+                    
+                    let displayUserAnswer = userAnswerRaw === "" ? "<em>(Blank)</em>" : userAnswerRaw;
+                    let correctVal = Array.isArray(correctAnswers[qId]) ? correctAnswers[qId][0] : correctAnswers[qId];
+                    let displayCorrectAnswer = correctVal;
+
+                    if(inputElement.tagName === 'SELECT' && !inputElement.classList.contains('vocab-select') && correctVal !== 'T' && correctVal !== 'F') {
+                         let correctOption = Array.from(inputElement.options).find(opt => opt.value === correctVal);
+                         if(correctOption) displayCorrectAnswer = correctOption.textContent;
+                    }
+
+                    mistakesList.push(`<li class="bg-gray-50 p-3 rounded border border-gray-200"><strong class="text-gray-900">Question ${visualNum}:</strong> You answered <span class="text-red-500 line-through mx-1 font-medium">${displayUserAnswer}</span> ➔ The correct answer is <span class="text-green-600 font-bold ml-1">${displayCorrectAnswer}</span>.</li>`);
+                }
+            });
+
+            // 2. Grade Writing (1 point each if not empty) (max 5 points)
+            document.querySelectorAll('textarea.q-input').forEach(textarea => {
+                if (textarea.value.trim().length > 3) {
+                    score++; 
+                }
+            });
+
+            // 3. Calculate Vigesimal Note and Letter Grade
+            let vigesimalStr = "00";
+            let letter = "";
+            let achievementText = "";
+            let cardColorClass = "";
+            let textColorClass = "";
+
+            if (score >= 53) {
+                letter = "AD"; 
+                achievementText = "Logro Destacado";
+                cardColorClass = "border-blue-500";
+                textColorClass = "text-blue-600";
+                // Math for vigesimal (18 to 20 range)
+                let v = Math.round(18 + ((score - 53) / (60 - 53)) * 2); 
+                vigesimalStr = v.toString().padStart(2, '0');
+            } else if (score >= 41) {
+                letter = "A"; 
+                achievementText = "Logro Esperado";
+                cardColorClass = "border-green-500";
+                textColorClass = "text-green-600";
+                // Math for vigesimal (14 to 17 range)
+                let v = Math.round(14 + ((score - 41) / (52 - 41)) * 3);
+                vigesimalStr = v.toString().padStart(2, '0');
+            } else if (score >= 31) {
+                letter = "B"; 
+                achievementText = "En Proceso";
+                cardColorClass = "border-orange-500";
+                textColorClass = "text-orange-500";
+                // Math for vigesimal (11 to 13 range)
+                let v = Math.round(11 + ((score - 31) / (40 - 31)) * 2);
+                vigesimalStr = v.toString().padStart(2, '0');
+            } else {
+                letter = "C"; 
+                achievementText = "En Inicio";
+                cardColorClass = "border-red-500";
+                textColorClass = "text-red-600";
+                // Math for vigesimal (0 to 10 range)
+                let v = Math.round((score / 30) * 10);
+                vigesimalStr = v.toString().padStart(2, '0');
+            }
+
+            // 4. Update UI with new stats
+            document.getElementById('scoreDisplay').textContent = score;
+            document.getElementById('vigesimalDisplay').textContent = vigesimalStr;
+            
+            const gradeCard = document.getElementById('gradeCard');
+            const letterDisplay = document.getElementById('letterDisplay');
+            const achievementDisplay = document.getElementById('achievementDisplay');
+
+            // Set text & styling for achievement card
+            letterDisplay.textContent = letter;
+            achievementDisplay.textContent = achievementText;
+            
+            // Reset classes
+            gradeCard.className = `bg-white p-6 rounded-2xl shadow-md border-b-8 text-center flex flex-col justify-center animate-pop ${cardColorClass}`;
+            letterDisplay.className = `text-7xl md:text-8xl font-black mt-2 leading-none ${textColorClass}`;
+            achievementDisplay.className = `text-sm md:text-base uppercase tracking-widest font-bold ${textColorClass}`;
+
+            // 5. Populate Mistakes Summary
+            const mistakesContainer = document.getElementById('mistakesContainer');
+            const mistakesUl = document.getElementById('mistakesList');
+            if (mistakesList.length > 0) {
+                mistakesUl.innerHTML = mistakesList.join('');
+                mistakesContainer.classList.remove('hidden');
+            } else {
+                mistakesContainer.classList.add('hidden');
+            }
+
+            // 6. Build Suggested Answers
+            const writingFeedbackList = document.getElementById('writingAnswersList');
+            writingFeedbackList.innerHTML = '';
+            document.querySelectorAll('textarea.q-input').forEach(textarea => {
+                let visNum = textarea.dataset.visualNum;
+                let sugAns = textarea.dataset.suggested;
+                writingFeedbackList.innerHTML += `<li><strong class="text-blue-700">Question ${visNum}:</strong> ${sugAns}</li>`;
+            });
+
+            // Reveal Results
+            document.getElementById('resultArea').classList.remove('hidden');
+            document.getElementById('writingFeedback').classList.remove('hidden');
+            
+            // Scroll to results
+            document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    </script>
+</body>
+</html>
