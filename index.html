@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
-    <title>Mock Exam B1 - Travel & Tourism</title>
+    <title>Mock Exam B1 - Travel & Tourism by: Hugo Luque</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        /* --- FONDO DEGRADADO ANIMADO PROFESIONAL --- */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            min-height: 100vh;
+            /* Colores del degradado: Azul, Violeta, Rosa, Teal */
+            background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #14b8a6);
+            background-size: 400% 400%;
+            animation: moverDegradado 15s ease infinite;
+        }
+
+        @keyframes moverDegradado {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* ------------------------------------------- */
+
         .correct-bg { background-color: #d1fae5 !important; border-color: #10b981 !important; }
         .incorrect-bg { background-color: #fee2e2 !important; border-color: #ef4444 !important; }
         .feedback-icon { display: none; margin-left: 8px; font-weight: bold; }
@@ -27,23 +43,27 @@
             transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
-        /* Ocultar scrollbar si se desea más inmersión, opcional */
-        /* ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; } */
+        /* Ocultar scrollbar para mayor inmersión (opcional) */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.5); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.8); }
     </style>
 </head>
 <body class="text-gray-800 p-3 md:p-8 relative">
 
     <!-- Reloj Flotante -->
-    <div id="floatingTimer" class="fixed bottom-6 right-6 md:top-6 md:bottom-auto md:right-8 bg-slate-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full shadow-2xl border-2 border-blue-400 font-mono text-xl md:text-2xl z-50 opacity-0 pointer-events-none flex items-center gap-2">
+    <div id="floatingTimer" class="fixed bottom-6 right-6 md:top-6 md:bottom-auto md:right-8 bg-slate-900/90 backdrop-blur-sm text-white px-4 md:px-6 py-2 md:py-3 rounded-full shadow-2xl border-2 border-blue-400 font-mono text-xl md:text-2xl z-50 opacity-0 pointer-events-none flex items-center gap-2">
         <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         <span id="liveTime">00:00</span>
     </div>
 
-    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
-        <div class="bg-blue-600 p-6 md:p-8 text-white text-center">
+    <!-- Contenedor Principal del Examen -->
+    <!-- Se mantiene blanco (bg-white) para que el texto sea perfectamente legible sobre el fondo animado -->
+    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden relative z-10">
+        <div class="bg-gray-900 p-6 md:p-8 text-white text-center">
             <h1 class="text-3xl md:text-4xl font-bold">B1 English Mock Exam</h1>
-            <p class="mt-2 text-blue-100 text-sm md:text-base">Simple Present, Simple Past & Travel Vocabulary</p>
+            <p class="mt-2 text-gray-300 text-sm md:text-base">Simple Present, Simple Past & Travel Vocabulary</p>
         </div>
 
         <form id="examForm" class="p-4 md:p-10 space-y-12">
@@ -173,34 +193,34 @@
                 
                 <div id="sec3-fill" class="q-group space-y-6 pl-2 md:pl-4">
                     <div class="q-item leading-loose">
-                        <span class="q-number font-bold text-gray-600"></span> She <input type="text" name="q26" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (travel) to New York every winter. <span id="fb-q26" class="feedback-icon"></span>
+                        <span class="q-number font-bold text-gray-600"></span> She <input type="text" name="q26" autocomplete="off" class="q-input bg-gray-50 border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500 focus:bg-white transition-colors"> (travel) to New York every winter. <span id="fb-q26" class="feedback-icon"></span>
                     </div>
                     <div class="q-item leading-loose">
-                        <span class="q-number font-bold text-gray-600"></span> Last week, we <input type="text" name="q27" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (not / visit) the museum because it was closed. <span id="fb-q27" class="feedback-icon"></span>
+                        <span class="q-number font-bold text-gray-600"></span> Last week, we <input type="text" name="q27" autocomplete="off" class="q-input bg-gray-50 border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500 focus:bg-white transition-colors"> (not / visit) the museum because it was closed. <span id="fb-q27" class="feedback-icon"></span>
                     </div>
                     <div class="q-item leading-loose">
-                        <span class="q-number font-bold text-gray-600"></span> <input type="text" name="q28" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (you / confirm) the reservation yesterday morning? <span id="fb-q28" class="feedback-icon"></span>
+                        <span class="q-number font-bold text-gray-600"></span> <input type="text" name="q28" autocomplete="off" class="q-input bg-gray-50 border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500 focus:bg-white transition-colors"> (you / confirm) the reservation yesterday morning? <span id="fb-q28" class="feedback-icon"></span>
                     </div>
                     <div class="q-item leading-loose">
-                        <span class="q-number font-bold text-gray-600"></span> The train usually <input type="text" name="q29" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (leave) from terminal 3. <span id="fb-q29" class="feedback-icon"></span>
+                        <span class="q-number font-bold text-gray-600"></span> The train usually <input type="text" name="q29" autocomplete="off" class="q-input bg-gray-50 border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500 focus:bg-white transition-colors"> (leave) from terminal 3. <span id="fb-q29" class="feedback-icon"></span>
                     </div>
                     <div class="q-item leading-loose">
-                        <span class="q-number font-bold text-gray-600"></span> I <input type="text" name="q30" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (lose) my passport at the airport two days ago! <span id="fb-q30" class="feedback-icon"></span>
+                        <span class="q-number font-bold text-gray-600"></span> I <input type="text" name="q30" autocomplete="off" class="q-input bg-gray-50 border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500 focus:bg-white transition-colors"> (lose) my passport at the airport two days ago! <span id="fb-q30" class="feedback-icon"></span>
                     </div>
                     <div class="q-item leading-loose">
-                        <span class="q-number font-bold text-gray-600"></span> The concierge <input type="text" name="q31" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-40 text-center focus:border-blue-500"> (not / speak) Spanish, only English and French. <span id="fb-q31" class="feedback-icon"></span>
+                        <span class="q-number font-bold text-gray-600"></span> The concierge <input type="text" name="q31" autocomplete="off" class="q-input bg-gray-50 border-b-2 border-gray-400 outline-none px-2 w-full sm:w-40 text-center focus:border-blue-500 focus:bg-white transition-colors"> (not / speak) Spanish, only English and French. <span id="fb-q31" class="feedback-icon"></span>
                     </div>
                     <div class="q-item leading-loose">
-                        <span class="q-number font-bold text-gray-600"></span> <input type="text" name="q32" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (they / book) their flights online normally? <span id="fb-q32" class="feedback-icon"></span>
+                        <span class="q-number font-bold text-gray-600"></span> <input type="text" name="q32" autocomplete="off" class="q-input bg-gray-50 border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500 focus:bg-white transition-colors"> (they / book) their flights online normally? <span id="fb-q32" class="feedback-icon"></span>
                     </div>
                     <div class="q-item leading-loose">
-                        <span class="q-number font-bold text-gray-600"></span> He <input type="text" name="q33" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (pay) the deposit for the lodge last month. <span id="fb-q33" class="feedback-icon"></span>
+                        <span class="q-number font-bold text-gray-600"></span> He <input type="text" name="q33" autocomplete="off" class="q-input bg-gray-50 border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500 focus:bg-white transition-colors"> (pay) the deposit for the lodge last month. <span id="fb-q33" class="feedback-icon"></span>
                     </div>
                     <div class="q-item leading-loose">
-                        <span class="q-number font-bold text-gray-600"></span> We <input type="text" name="q34" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500"> (take) a lot of photos during the guided tour yesterday. <span id="fb-q34" class="feedback-icon"></span>
+                        <span class="q-number font-bold text-gray-600"></span> We <input type="text" name="q34" autocomplete="off" class="q-input bg-gray-50 border-b-2 border-gray-400 outline-none px-2 w-full sm:w-32 text-center focus:border-blue-500 focus:bg-white transition-colors"> (take) a lot of photos during the guided tour yesterday. <span id="fb-q34" class="feedback-icon"></span>
                     </div>
                     <div class="q-item leading-loose">
-                        <span class="q-number font-bold text-gray-600"></span> Why <input type="text" name="q35" autocomplete="off" class="q-input border-b-2 border-gray-400 outline-none px-2 w-full sm:w-40 text-center focus:border-blue-500"> (the bus / arrive) so late this morning? <span id="fb-q35" class="feedback-icon"></span>
+                        <span class="q-number font-bold text-gray-600"></span> Why <input type="text" name="q35" autocomplete="off" class="q-input bg-gray-50 border-b-2 border-gray-400 outline-none px-2 w-full sm:w-40 text-center focus:border-blue-500 focus:bg-white transition-colors"> (the bus / arrive) so late this morning? <span id="fb-q35" class="feedback-icon"></span>
                     </div>
                 </div>
 
@@ -373,23 +393,23 @@
                 <div id="sec5-writing" class="q-group space-y-8">
                     <div class="q-item">
                         <label class="block font-semibold mb-2"><span class="q-number font-bold text-gray-600"></span> Describe your last vacation. Where did you go and what kind of accommodation did you stay in?</label>
-                        <textarea name="q56" data-suggested="Last summer, I went to London with my family. We stayed in a nice boutique hotel in the city center." class="q-input w-full border rounded p-3 h-24 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Write at least a few words to get the point..."></textarea>
+                        <textarea name="q56" data-suggested="Last summer, I went to London with my family. We stayed in a nice boutique hotel in the city center." class="q-input w-full border rounded p-3 h-24 bg-gray-50 focus:bg-white focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-colors" placeholder="Write at least a few words to get the point..."></textarea>
                     </div>
                     <div class="q-item">
                         <label class="block font-semibold mb-2"><span class="q-number font-bold text-gray-600"></span> What do you prefer: an all-inclusive resort or a budget hostel? Why? (Use Simple Present)</label>
-                        <textarea name="q57" data-suggested="I prefer an all-inclusive resort because I like to relax. I don't want to cook or look for restaurants when I travel." class="q-input w-full border rounded p-3 h-24 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Write at least a few words to get the point..."></textarea>
+                        <textarea name="q57" data-suggested="I prefer an all-inclusive resort because I like to relax. I don't want to cook or look for restaurants when I travel." class="q-input w-full border rounded p-3 h-24 bg-gray-50 focus:bg-white focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-colors" placeholder="Write at least a few words to get the point..."></textarea>
                     </div>
                     <div class="q-item">
                         <label class="block font-semibold mb-2"><span class="q-number font-bold text-gray-600"></span> Think about a travel problem (e.g., turbulence, lost luggage, cancellation). What happened? (Use Simple Past)</label>
-                        <textarea name="q58" data-suggested="During my trip to Brazil, my flight had a lot of turbulence. I felt very nervous, but the flight attendants helped me calm down." class="q-input w-full border rounded p-3 h-24 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Write at least a few words to get the point..."></textarea>
+                        <textarea name="q58" data-suggested="During my trip to Brazil, my flight had a lot of turbulence. I felt very nervous, but the flight attendants helped me calm down." class="q-input w-full border rounded p-3 h-24 bg-gray-50 focus:bg-white focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-colors" placeholder="Write at least a few words to get the point..."></textarea>
                     </div>
                     <div class="q-item">
                         <label class="block font-semibold mb-2"><span class="q-number font-bold text-gray-600"></span> What do you usually do while you are waiting in the airport terminal?</label>
-                        <textarea name="q59" data-suggested="I usually read a book or buy souvenirs in the duty-free shops. Sometimes I drink coffee in a cafe." class="q-input w-full border rounded p-3 h-24 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Write at least a few words to get the point..."></textarea>
+                        <textarea name="q59" data-suggested="I usually read a book or buy souvenirs in the duty-free shops. Sometimes I drink coffee in a cafe." class="q-input w-full border rounded p-3 h-24 bg-gray-50 focus:bg-white focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-colors" placeholder="Write at least a few words to get the point..."></textarea>
                     </div>
                     <div class="q-item">
                         <label class="block font-semibold mb-2"><span class="q-number font-bold text-gray-600"></span> Imagine you are a tour guide. Recommend a famous landmark or heritage site in your country.</label>
-                        <textarea name="q60" data-suggested="I recommend visiting Machu Picchu in Peru. It is a beautiful heritage site with incredible landscapes." class="q-input w-full border rounded p-3 h-24 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Write at least a few words to get the point..."></textarea>
+                        <textarea name="q60" data-suggested="I recommend visiting Machu Picchu in Peru. It is a beautiful heritage site with incredible landscapes." class="q-input w-full border rounded p-3 h-24 bg-gray-50 focus:bg-white focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-colors" placeholder="Write at least a few words to get the point..."></textarea>
                     </div>
                 </div>
                 
